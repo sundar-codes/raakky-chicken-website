@@ -8,7 +8,7 @@ const mapEmbedUrl = 'https://www.google.com/maps?q=The+Raakky+Chicken,+81+Thiruv
 const googleUrl = 'https://share.google/OM1mRey3kexr1j7tc'
 const studioUrl = 'https://sd-webstudio.vercel.app/#contact'
 
-const onlineOrderUrl = '' // Add the Raakky Chicken ordering-app URL here when it is ready.
+const onlineOrderUrl = 'https://raakky-app-b.pages.dev'
 
 const products = [
   { name: 'Curry cut', detail: 'For everyday cooking', image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=720&q=78' },
@@ -75,7 +75,7 @@ function App() {
         <p className="hero-intro">Your neighbourhood chicken shop in Press Colony, with cuts for everyday cooking and family meals.</p>
         <div className="hero-actions">
           <a className="button button-red" href="#locations">VISIT THE SHOP <ArrowUpRight size={17}/></a>
-          <a className="text-link" href={orderHref} onClick={e => { if (!onlineOrderUrl) { e.preventDefault(); document.getElementById('online-order')?.scrollIntoView({ behavior: 'smooth' }) } }}>ONLINE ORDER <ShoppingBag size={16}/></a>
+          <a className="text-link" href={orderHref} target={onlineOrderUrl ? '_blank' : undefined} rel={onlineOrderUrl ? 'noreferrer' : undefined} onClick={e => { if (!onlineOrderUrl) { e.preventDefault(); document.getElementById('online-order')?.scrollIntoView({ behavior: 'smooth' }) } }}>ONLINE ORDER <ShoppingBag size={16}/></a>
         </div>
         <div className="hero-proof">
           <div className="rating-stars"><Star fill="currentColor"/><Star fill="currentColor"/><Star fill="currentColor"/><Star fill="currentColor"/><Star fill="currentColor"/></div>
@@ -103,7 +103,7 @@ function App() {
 
     <section className="order-band" id="online-order">
       <div className="wrap order-inner">
-        <div><span className="section-kicker">ONLINE ORDERING</span><h2>Order online<br/><em>with Raakky.</em></h2><p>Our online ordering destination will be available here. For now, contact our Press Colony shop to check availability.</p></div>
+        <div><span className="section-kicker">ONLINE ORDERING</span><h2>Order online<br/><em>with Raakky.</em></h2><p>Order fresh chicken cuts online directly from our shop. Choose your preferred cut and get it delivered or prepared for pickup.</p></div>
         {onlineOrderUrl ? <a className="button button-light" href={onlineOrderUrl} target="_blank" rel="noreferrer">ORDER ONLINE <ArrowUpRight size={17}/></a> : <span className="order-status"><ShoppingBag size={17}/> ONLINE ORDERING COMING SOON</span>}
       </div>
     </section>
