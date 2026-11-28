@@ -11,10 +11,17 @@ const studioUrl = 'https://sd-webstudio.vercel.app/#contact'
 const onlineOrderUrl = 'https://raakky-app-b.pages.dev'
 
 const products = [
-  { name: 'Curry cut', detail: 'For everyday cooking', image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=720&q=78' },
-  { name: 'Boneless', detail: 'Easy to prepare', image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=720&q=78' },
-  { name: 'Drumsticks', detail: 'A versatile favourite', image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=720&q=78' },
-  { name: 'Wings', detail: 'For snacks and meals', image: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=720&q=78' },
+  { name: 'Curry cut', detail: 'For everyday cooking', image: '/images/products/chicken-curry-cut.jpg' },
+  { name: 'Boneless', detail: 'Easy to prepare', image: '/images/products/chicken-boneless-cubes.jpg' },
+  { name: 'Drumsticks', detail: 'A versatile favourite', image: '/images/products/chicken-leg-drumsticks.jpg' },
+  { name: 'Wings', detail: 'For snacks and meals', image: '/images/products/chicken-wings.jpg' },
+]
+
+const serviceLocations = [
+  'Veerapandi',
+  'Press Colony',
+  'Thiruvalluvar Nagar',
+  'Mathampalayam',
 ]
 
 function getShopStatus(now: Date) {
@@ -59,7 +66,7 @@ function App() {
 
     <header className="nav wrap">
       <a className="brand" href="#top" aria-label="The Raakky Chicken home">
-        <span className="brand-mark">R</span><span>THE RAAKKY<br/><b>CHICKEN</b></span>
+        <img className="brand-logo" src="/images/raakky-brand-badge.png" alt="The Raakky Chicken logo" decoding="async"/><span>THE RAAKKY<br/><b>CHICKEN</b></span>
       </a>
       <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
         {navLinks.map(link => <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>{link.label}</a>)}
@@ -98,7 +105,7 @@ function App() {
 
     <section className="selection wrap" id="cuts">
       <div className="section-heading"><div><span className="section-kicker">FROM OUR COUNTER</span><h2>Chicken <em>cuts.</em></h2></div><p>Some of the cuts available at The Raakky Chicken. Selection may vary by day.</p></div>
-      <div className="product-grid">{products.map(product => <article className="product-card" key={product.name}><div className="product-photo"><img src={product.image} alt={`${product.name} chicken cut`} loading="lazy"/></div><div className="product-meta"><div><h3>{product.name}</h3><p>{product.detail}</p></div><ArrowUpRight size={19}/></div></article>)}</div>
+      <div className="product-grid">{products.map(product => <a className="product-card" key={product.name} href={onlineOrderUrl} target="_blank" rel="noreferrer" aria-label={`Order ${product.name} at The Raakky Chicken`}><div className="product-photo"><img src={product.image} alt={`${product.name} chicken cut`} loading="lazy" decoding="async"/></div><div className="product-meta"><div><h3>{product.name}</h3><p>{product.detail}</p></div><ArrowUpRight size={19}/></div></a>)}</div>
     </section>
 
     <section className="order-band" id="online-order">
@@ -124,12 +131,12 @@ function App() {
           <span className="map-open-label">OPEN IN GOOGLE MAPS <ArrowUpRight size={16}/></span>
         </a>
       </div>
-      <div className="delivery-note"><div className="delivery-icon"><MapPin size={19}/></div><div className="delivery-copy"><b>Delivery area</b><p>Delivery is currently available only in select nearby locations. For now, we are focusing on our Press Colony branch.</p><a className="delivery-listing" href={googleUrl} target="_blank" rel="noreferrer">VIEW GOOGLE BUSINESS LISTING <ArrowUpRight size={15}/></a></div></div>
+      <div className="delivery-note"><div className="delivery-icon"><MapPin size={19}/></div><div className="delivery-copy"><b>Service &amp; delivery locations</b><p>Serving customers from our Press Colony shop across these four locations:</p><ul className="location-list" aria-label="Service and delivery locations">{serviceLocations.map(area => <li key={area} className="location-pill"><span className="location-dot" aria-hidden="true"/><span>{area}</span></li>)}</ul><a className="delivery-listing" href={googleUrl} target="_blank" rel="noreferrer">VIEW GOOGLE BUSINESS LISTING <ArrowUpRight size={15}/></a></div></div>
     </section>
 
     <footer className="footer">
       <div className="wrap footer-main">
-        <a className="brand footer-brand" href="#top"><span className="brand-mark">R</span><span>THE RAAKKY<br/><b>CHICKEN</b></span></a>
+        <a className="brand footer-brand" href="#top"><img className="brand-logo" src="/images/raakky-brand-badge.png" alt="The Raakky Chicken logo" decoding="async"/><span>THE RAAKKY<br/><b>CHICKEN</b></span></a>
         <a className="studio-mark" href={studioUrl} target="_blank" rel="noreferrer" aria-label="Crafted by SD"><img src="/images/sd-logo.png" alt="SD Logo" loading="lazy" decoding="async"/><span>crafted by SD</span></a>
       </div>
       <div className="wrap footer-bottom">

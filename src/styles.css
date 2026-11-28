@@ -79,6 +79,14 @@ button {
 .brand b {
   color:var(--red)
 }
+.brand-logo {
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  object-fit:contain;
+  display:block;
+  flex-shrink:0
+}
 .brand-mark {
   width:38px;
   height:38px;
@@ -354,10 +362,12 @@ button {
   gap:17px
 }
 .product-card {
-  min-width:0
+  display:block;
+  min-width:0;
+  cursor:pointer
 }
 .product-photo {
-  height:260px;
+  aspect-ratio:4/3;
   position:relative;
   overflow:hidden;
   background:#1b1b1b
@@ -366,7 +376,8 @@ button {
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:saturate(.72);
+  object-position:center;
+  filter:saturate(.9);
   transition:transform .5s,filter .5s
 }
 .product-card:hover .product-photo img {
@@ -378,7 +389,11 @@ button {
   align-items:center;
   justify-content:space-between;
   padding:15px 2px;
-  border-bottom:1px solid #ffffff30
+  border-bottom:1px solid #ffffff30;
+  transition:border-color .2s
+}
+.product-card:hover .product-meta {
+  border-bottom-color:var(--red)
 }
 .product-meta h3 {
   font-family:'Barlow Condensed',sans-serif;
@@ -392,7 +407,11 @@ button {
   font-size:10px
 }
 .product-meta>svg {
-  color:var(--red)
+  color:var(--red);
+  transition:transform .2s
+}
+.product-card:hover .product-meta>svg {
+  transform:translate(2px,-2px)
 }
 .order-band {
   background:#151515;
@@ -586,6 +605,37 @@ button {
   line-height:1.7;
   margin:5px 0 0
 }
+.delivery-copy {
+  flex:1;
+  min-width:0
+}
+.location-list {
+  list-style:none;
+  margin:12px 0 2px;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px
+}
+.location-pill {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 11px;
+  background:#191919;
+  border:1px solid #ffffff1f;
+  font-size:11px;
+  font-weight:600;
+  color:#f0f0f0;
+  letter-spacing:.2px
+}
+.location-dot {
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--red);
+  flex-shrink:0
+}
 .delivery-listing {
   display:inline-flex;
   align-items:center;
@@ -747,7 +797,10 @@ button {
     row-gap:25px
   }
   .product-photo {
-    height:240px
+    aspect-ratio:4/3
+  }
+  .location-list {
+    grid-template-columns:repeat(2,minmax(0,1fr))
   }
   .location-layout {
     grid-template-columns:1fr
@@ -865,7 +918,7 @@ button {
     gap:18px 11px
   }
   .product-photo {
-    height:175px
+    aspect-ratio:1/1
   }
   .product-meta h3 {
     font-size:19px
@@ -908,6 +961,14 @@ button {
   .delivery-note p {
     font-size:10px
   }
+  .location-list {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px
+  }
+  .location-pill {
+    padding:8px 9px;
+    font-size:10px
+  }
   .footer-main {
     grid-template-columns:minmax(0,1fr) auto;
     display:grid;
@@ -922,7 +983,7 @@ button {
     font-size:13px;
     gap:8px
   }
-  .footer-brand .brand-mark {
+  .footer-brand .brand-mark,.footer-brand .brand-logo {
     width:34px;
     height:34px;
     font-size:24px
